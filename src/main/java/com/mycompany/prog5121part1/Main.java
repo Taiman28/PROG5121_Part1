@@ -40,6 +40,8 @@ public class Main {
 
         System.out.println(user.returnLoginStatus());
 
+        System.out.println("Thank you for.");
+
         input.close();
     }
 }
