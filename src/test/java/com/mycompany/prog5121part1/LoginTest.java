@@ -179,4 +179,18 @@ public void testRegisterUserStoresDetails() {
     assertEquals("kyl_1", instance.registeredUsername);
     assertEquals("Taiman&28", instance.registeredPassword);
    }
+@Test
+public void testCheckPasswordExactlyEightCharacters() {
+    Login instance = new Login();
+    instance.password = "A1!bcdef";
+
+    assertTrue(instance.checkPasswordComplexity());
+   }
+@Test
+public void testCheckCellPhoneNumberTooShort() {
+    Login instance = new Login();
+    instance.cellPhoneNumber = "+2783896897";
+
+    assertFalse(instance.checkCellPhoneNumber());
+   }
 }
