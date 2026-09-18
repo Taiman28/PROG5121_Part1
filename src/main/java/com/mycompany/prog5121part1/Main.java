@@ -10,7 +10,7 @@ public class Main {
 
         Login user = new Login();
 
-        System.out.println("=== REGISTRATION ===");
+        System.out.println("=== USER REGISTRATION ===");
 
         System.out.print("Enter your first name: ");
         user.firstName = input.nextLine();
