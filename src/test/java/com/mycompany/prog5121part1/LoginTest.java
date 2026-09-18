@@ -20,6 +20,14 @@ public class LoginTest {
 
         assertFalse(instance.checkUserName());
     }
+    
+    @Test
+public void testCheckUserNameTooLong() {
+    Login instance = new Login();
+    instance.username = "abcde_";
+
+    assertFalse(instance.checkUserName());
+    }
 
     @Test
     public void testCheckPasswordComplexityCorrect() {
