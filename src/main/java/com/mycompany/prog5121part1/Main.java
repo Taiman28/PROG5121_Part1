@@ -30,7 +30,7 @@ public class Main {
         System.out.println(user.registerUser());
 
         System.out.println();
-        System.out.println("=== LOGIN ===");
+        System.out.println("=== USER LOGIN ===");
 
         System.out.print("Enter your username: ");
         user.loginUsername = input.nextLine();
