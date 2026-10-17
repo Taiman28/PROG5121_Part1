@@ -38,9 +38,56 @@ public class Main {
         System.out.print("Enter your password: ");
         user.loginPassword = input.nextLine();
 
-        System.out.println(user.returnLoginStatus());
+        if (user.loginUser()) {
 
-        System.out.println("Thank you for.");
+            System.out.println("Welcome to QuickChat.");
+
+            int choice = 0;
+
+            while (choice != 3) {
+
+                System.out.println();
+                System.out.println("1) Send Messages");
+                System.out.println("2) Show recently sent messages");
+                System.out.println("3) Quit");
+
+                System.out.print("Choose an option: ");
+
+                if (input.hasNextInt()) {
+                    choice = input.nextInt();
+                    input.nextLine();
+
+                    switch (choice) {
+
+                        case 1:
+                            System.out.println(
+                                "Message feature coming next."
+                            );
+                            break;
+
+                        case 2:
+                            System.out.println("Coming Soon.");
+                            break;
+
+                        case 3:
+                            System.out.println("Thank you for using QuickChat.");
+                            break;
+
+                        default:
+                            System.out.println("Invalid option. Try again.");
+                    }
+
+                } else {
+                    System.out.println("Please enter a number.");
+                    input.nextLine();
+                }
+            }
+
+        } else {
+            System.out.println(
+                "Username or password incorrect, please try again."
+            );
+        }
 
         input.close();
     }
