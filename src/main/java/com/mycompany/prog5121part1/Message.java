@@ -27,18 +27,20 @@ public class Message {
     }
 
     private String createMessageHash() {
-        String[] words = messageText.trim().split("\\s+");
+    String[] words = messageText.trim().split("\\s+");
 
-        String firstWord = words.length > 0 ? words[0] : "";
-        String lastWord = words.length > 0 ? words[words.length - 1] : "";
+    String firstWord = words[0].replaceAll("[^a-zA-Z0-9]", "");
+    String lastWord = words[words.length - 1]
+            .replaceAll("[^a-zA-Z0-9]", "");
 
-        return messageID.substring(0, 2) + ":"
-                + messageNumber + ":"
-                + firstWord.toUpperCase() + lastWord.toUpperCase();
-    }
+    return messageID.substring(0, 2) + ":"
+            + messageNumber + ":"
+            + firstWord.toUpperCase()
+            + lastWord.toUpperCase();
+}
 
     public boolean checkMessageID() {
-        return messageID.length() == 10;
+    return messageID != null && messageID.length() == 10;
     }
 
     public boolean checkRecipientCell() {
