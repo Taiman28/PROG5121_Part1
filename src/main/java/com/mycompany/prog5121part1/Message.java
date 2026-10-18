@@ -2,6 +2,8 @@ package com.mycompany.prog5121part1;
 
 import java.util.Random;
 
+import java.util.Scanner;
+
 public class Message {
 
     private String messageID;
@@ -79,4 +81,30 @@ public class Message {
     public void incrementTotalMessagesSent() {
         totalMessagesSent++;
     }
+    
+    public String SentMessage() {
+    Scanner input = new Scanner(System.in);
+
+    System.out.println("Choose an option:");
+    System.out.println("1. Send Message");
+    System.out.println("2. Disregard Message");
+    System.out.println("3. Store Message");
+
+    int choice = input.nextInt();
+
+    switch (choice) {
+        case 1:
+            totalMessagesSent++;
+            return "Message successfully sent.";
+
+        case 2:
+            return "Press 0 to delete the message.";
+
+        case 3:
+            return "Message successfully stored.";
+
+        default:
+            return "Invalid option. Please try again.";
+    }
+}
 }
