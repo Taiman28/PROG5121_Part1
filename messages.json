@@ -1,0 +1,16 @@
+[
+{
+    "messageID": "1811316129",
+    "messageNumber": 1,
+    "recipient": "+27692213245",
+    "messageText": "Hi Mike, can you joi us for dinner tonight?",
+    "messageHash": "18:1:HITONIGHT"
+  },
+  {
+    "messageID": "7822495595",
+    "messageNumber": 1,
+    "recipient": "+27687893456",
+    "messageText": "Are you coming?",
+    "messageHash": "78:1:ARECOMING"
+  }
+]
