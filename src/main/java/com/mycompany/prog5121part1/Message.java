@@ -4,6 +4,12 @@ import java.util.Random;
 
 import java.util.Scanner;
 
+import java.util.ArrayList;
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 public class Message {
 
     private String messageID;
@@ -13,6 +19,8 @@ public class Message {
     private String messageHash;
 
     private static int totalMessagesSent = 0;
+    
+    private static ArrayList<Message> sentMessages = new ArrayList<>();
 
     public Message(int messageNumber, String recipient, String messageText) {
         this.messageNumber = messageNumber;
@@ -28,7 +36,7 @@ public class Message {
         return String.valueOf(id);
     }
 
-    private String createMessageHash() {
+    public String createMessageHash() {
     String[] words = messageText.trim().split("\\s+");
 
     String firstWord = words[0].replaceAll("[^a-zA-Z0-9]", "");
@@ -95,16 +103,135 @@ public class Message {
     switch (choice) {
         case 1:
             totalMessagesSent++;
+            sentMessages.add(this);
             return "Message successfully sent.";
 
         case 2:
             return "Press 0 to delete the message.";
 
         case 3:
-            return "Message successfully stored.";
+            return storeMessage();
 
         default:
             return "Invalid option. Please try again.";
     }
+}
+    
+    public static String printMessages() {
+    StringBuilder output = new StringBuilder();
+
+    for (Message message : sentMessages) {
+        output.append("Message ID: ")
+              .append(message.getMessageID())
+              .append("\nMessage Hash: ")
+              .append(message.getMessageHash())
+              .append("\nRecipient: ")
+              .append(message.getRecipient())
+              .append("\nMessage: ")
+              .append(message.getMessageText())
+              .append("\n\n");
+    }
+
+    if (output.length() == 0) {
+        return "No messages have been sent.";
+    }
+
+    return output.toString();
+}
+    
+    public static int returnTotalMessagess() {
+    return totalMessagesSent;
+}
+    
+    public String storeMessage() {
+    System.out.println("Working directory: "
+        + System.getProperty("user.dir"));
+        Path filePath = Path.of("messages.json");
+
+    String messageJson = "  {\n"
+            + "    \"messageID\": \"" + escapeJson(messageID) + "\",\n"
+            + "    \"messageNumber\": " + messageNumber + ",\n"
+            + "    \"recipient\": \"" + escapeJson(recipient) + "\",\n"
+            + "    \"messageText\": \"" + escapeJson(messageText) + "\",\n"
+            + "    \"messageHash\": \"" + escapeJson(messageHash) + "\"\n"
+            + "  }";
+
+    try {
+        String existingJson = "";
+
+        if (Files.exists(filePath)) {
+            existingJson = Files.readString(filePath).trim();
+        }
+
+        if (existingJson.isEmpty()) {
+            existingJson = "[]";
+        }
+
+        if (!existingJson.startsWith("[") || !existingJson.endsWith("]")) {
+            return "Unable to store message: messages.json is not a valid JSON array.";
+        }
+
+        String existingMessages = existingJson
+                .substring(1, existingJson.length() - 1)
+                .trim();
+
+        String updatedJson;
+
+        if (existingMessages.isEmpty()) {
+            updatedJson = "[\n" + messageJson + "\n]";
+        } else {
+            updatedJson = "[\n"
+                    + existingMessages + ",\n"
+                    + messageJson + "\n]";
+        }
+
+        Files.writeString(filePath, updatedJson);
+
+        return "Message successfully stored.";
+
+    } catch (IOException e) {
+        return "Unable to store message: " + e.getMessage();
+    }
+}
+
+private String escapeJson(String value) {
+    StringBuilder escaped = new StringBuilder();
+
+    for (int i = 0; i < value.length(); i++) {
+        char character = value.charAt(i);
+
+        switch (character) {
+            case '"':
+                escaped.append("\\\"");
+                break;
+            case '\\':
+                escaped.append("\\\\");
+                break;
+            case '\b':
+                escaped.append("\\b");
+                break;
+            case '\f':
+                escaped.append("\\f");
+                break;
+            case '\n':
+                escaped.append("\\n");
+                break;
+            case '\r':
+                escaped.append("\\r");
+                break;
+            case '\t':
+                escaped.append("\\t");
+                break;
+            default:
+                if (character < 0x20) {
+                    escaped.append(String.format("\\u%04x", (int) character));
+                } else {
+                    escaped.append(character);
+                }
+                break;
+        }
+    }
+
+    return escaped.toString();
 }
 }
