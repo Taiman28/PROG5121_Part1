@@ -21,6 +21,12 @@ public class Message {
     private static int totalMessagesSent = 0;
     
     private static ArrayList<Message> sentMessages = new ArrayList<>();
+    
+    private static ArrayList<Message> disregardedMessages =
+        new ArrayList<>();
+    
+    private static ArrayList<Message> storedMessages =
+        new ArrayList<>();
 
     public Message(int messageNumber, String recipient, String messageText) {
         this.messageNumber = messageNumber;
@@ -54,8 +60,8 @@ public class Message {
     }
 
     public boolean checkRecipientCell() {
-        return recipient != null
-                && recipient.matches("^\\+\\d{1,10}$");
+    return recipient != null
+            && recipient.matches("^\\+\\d{1,11}$");
     }
 
     public boolean checkMessageLength() {
@@ -233,5 +239,101 @@ private String escapeJson(String value) {
     }
 
     return escaped.toString();
+}
+
+public String processMessage(int choice) {
+    switch (choice) {
+        case 1:
+            totalMessagesSent++;
+            sentMessages.add(this);
+            return "Message successfully sent.";
+
+        case 2:
+            disregardedMessages.add(this);
+            return "Press 0 to delete the message";
+
+        case 3:
+            String result = storeMessage();
+
+            if (result.equals("Message successfully stored.")) {
+                storedMessages.add(this);
+            }
+
+            return result;
+
+        default:
+            return "Invalid option. Please try again.";
+    }
+}
+
+public static String searchMessagesByRecipient(String recipient) {
+    StringBuilder output = new StringBuilder();
+
+    for (Message message : sentMessages) {
+        if (message.getRecipient().equals(recipient)) {
+            output.append("Message ID: ")
+                  .append(message.getMessageID())
+                  .append("\nMessage: ")
+                  .append(message.getMessageText())
+                  .append("\nRecipient: ")
+                  .append(message.getRecipient())
+                  .append("\n\n");
+        }
+    }
+
+    if (output.length() == 0) {
+        return "No messages found for this recipient.";
+    }
+
+    return output.toString();
+ }
+
+public static String searchMessageByID(String messageID) {
+    for (Message message : sentMessages) {
+        if (message.getMessageID().equals(messageID)) {
+            return "Recipient: " + message.getRecipient()
+                    + "\nMessage: " + message.getMessageText();
+        }
+    }
+
+    return "Message not found.";
+ }
+
+public static String getLongestMessage() {
+    if (sentMessages.isEmpty()) {
+        return "No messages have been sent.";
+    }
+
+    Message longest = sentMessages.get(0);
+
+    for (Message message : sentMessages) {
+        if (message.getMessageText().length()
+                > longest.getMessageText().length()) {
+            longest = message;
+        }
+    }
+
+    return longest.getMessageText();
+}
+
+public static boolean deleteMessageByHash(String messageHash) {
+    for (int i = 0; i < sentMessages.size(); i++) {
+        Message message = sentMessages.get(i);
+
+        if (message.getMessageHash().equals(messageHash)) {
+            sentMessages.remove(i);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+public static ArrayList<Message> getStoredMessages() {
+    return storedMessages;
+}
+
+public static ArrayList<Message> getDisregardedMessages() {
+    return disregardedMessages;
 }
 }
