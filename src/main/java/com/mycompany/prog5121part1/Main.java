@@ -2,6 +2,7 @@ package com.mycompany.prog5121part1;
 import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
+        Message.loadStoredMessages();
         Scanner input = new Scanner(System.in);
         Login user = new Login();
         System.out.println("=== USER REGISTRATION ===");
