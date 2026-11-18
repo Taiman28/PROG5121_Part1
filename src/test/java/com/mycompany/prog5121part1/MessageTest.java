@@ -2,8 +2,16 @@ package com.mycompany.prog5121part1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 public class MessageTest {
+    
+    @BeforeEach
+public void setUp() {
+    Message.getSentMessages().clear();
+    Message.getStoredMessages().clear();
+    Message.getDisregardedMessages().clear();
+}
 
     @Test
     public void testMessageIDIsTenDigits() {
