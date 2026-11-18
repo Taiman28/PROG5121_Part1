@@ -2,8 +2,16 @@ package com.mycompany.prog5121part1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.BeforeEach;
 
 public class MessageTest {
+    
+    @BeforeEach
+public void setUp() {
+    Message.getSentMessages().clear();
+    Message.getStoredMessages().clear();
+    Message.getDisregardedMessages().clear();
+}
 
     @Test
     public void testMessageIDIsTenDigits() {
@@ -269,5 +277,109 @@ public void testDeleteMessageKeepsOtherMessages() {
             Message.searchMessageByID(secondMessage.getMessageID())
                     .contains("Second message.")
     );
+}
+
+@Test
+public void testDisplayStoredSendersAndRecipients() {
+    Message message = new Message(
+            40,
+            "+27834557896",
+            "Unique sender recipient test."
+    );
+
+    message.processMessage(3);
+
+    String result = Message.displayStoredSendersAndRecipients();
+
+    assertTrue(result.contains("Sender: You"));
+    assertTrue(result.contains("+27834557896"));
+}
+
+@Test
+public void testGetLongestStoredMessage() {
+    String longText = "L".repeat(250);
+
+    Message message = new Message(
+            41,
+            "+27834557896",
+            longText
+    );
+
+    message.processMessage(3);
+
+    String result = Message.getLongestStoredMessage();
+
+    assertNotNull(result);
+    assertEquals(250, result.length());
+}
+
+@Test
+public void testSearchStoredMessageByID() {
+    Message message = new Message(
+            42,
+            "+27834557896",
+            "Find this stored message."
+    );
+
+    message.processMessage(3);
+
+    String result =
+            Message.searchStoredMessageByID(message.getMessageID());
+
+    assertTrue(result.contains("+27834557896"));
+    assertTrue(result.contains("Find this stored message."));
+}
+
+@Test
+public void testSearchStoredMessagesByRecipient() {
+    Message message = new Message(
+            43,
+            "+27834557896",
+            "Search stored recipient test."
+    );
+
+    message.processMessage(3);
+
+    String result =
+            Message.searchStoredMessagesByRecipient("+27834557896");
+
+    assertTrue(result.contains("Search stored recipient test."));
+}
+
+@Test
+public void testDeleteStoredMessageByHash() {
+    Message message = new Message(
+            44,
+            "+27834557896",
+            "Delete this stored test message."
+    );
+
+    message.processMessage(3);
+
+    assertTrue(
+            Message.deleteStoredMessageByHash(message.getMessageHash())
+    );
+
+    assertFalse(
+            Message.getStoredMessages().contains(message)
+    );
+}
+
+@Test
+public void testDisplayStoredMessagesReport() {
+    Message message = new Message(
+            45,
+            "+27834557896",
+            "Full stored report test."
+    );
+
+    message.processMessage(3);
+
+    String result = Message.displayStoredMessagesReport();
+
+    assertTrue(result.contains(message.getMessageID()));
+    assertTrue(result.contains(message.getMessageHash()));
+    assertTrue(result.contains("+27834557896"));
+    assertTrue(result.contains("Full stored report test."));
 }
 }

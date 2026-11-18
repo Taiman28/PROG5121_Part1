@@ -238,7 +238,20 @@ public class Message {
     }
 
     public static String searchStoredMessageByID(String messageID) {
-        return searchIDInList(storedMessages, messageID);
+
+    String result = searchIDInList(sentMessages, messageID);
+
+    if (!result.equals("Message not found.")) {
+        return result;
+    }
+
+    result = searchIDInList(storedMessages, messageID);
+
+    if (!result.equals("Message not found.")) {
+        return result;
+    }
+
+    return searchIDInList(disregardedMessages, messageID);
     }
 
     public static String searchStoredMessagesByRecipient(String recipient) {

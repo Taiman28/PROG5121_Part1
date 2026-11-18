@@ -15,7 +15,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Apache NetBeans\jdk\bin"/>
-    <property name="sun.java.command" value="C:\Users\Student\AppData\Local\Temp\surefire13723087789378749202\surefirebooter-20261110150430344_3.jar C:\Users\Student\AppData\Local\Temp\surefire13723087789378749202 2026-11-10T15-04-30_164-jvmRun1 surefire-20261110150430344_1tmp surefire_0-20261110150430344_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\Student\AppData\Local\Temp\surefire11998917609400298129\surefirebooter-20261118203409768_3.jar C:\Users\Student\AppData\Local\Temp\surefire11998917609400298129 2026-11-18T20-34-09_610-jvmRun1 surefire-20261118203409768_1tmp surefire_0-20261118203409768_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\Student\Documents\NetBeansProjects\PROG5121Part1\target\test-classes;C:\Users\Student\Documents\NetBeansProjects\PROG5121Part1\target\classes;C:\Users\Student\.m2\repository\com\google\code\gson\gson\2.15.0\gson-2.15.0.jar;C:\Users\Student\.m2\repository\com\google\errorprone\error_prone_annotations\2.50.0\error_prone_annotations-2.50.0.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.3\junit-jupiter-api-5.10.3.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-commons\1.10.3\junit-platform-commons-1.10.3.jar;C:\Users\Student\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.3\junit-jupiter-params-5.10.3.jar;C:\Users\Student\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.3\junit-jupiter-engine-5.10.3.jar;C:\Users\Student\.m2\repository\org\junit\platform\junit-platform-engine\1.10.3\junit-platform-engine-1.10.3.jar;C:\Users\Student\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\Student\AppData\Local\Temp\surefire13723087789378749202\surefirebooter-20261110150430344_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Student\AppData\Local\Temp\surefire11998917609400298129\surefirebooter-20261118203409768_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="25.0.1+8-LTS"/>
@@ -61,20 +61,20 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="69.0"/>
   </properties>
-  <testcase name="testCheckCellPhoneNumberIncorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.024"/>
+  <testcase name="testCheckCellPhoneNumberIncorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.032"/>
   <testcase name="testRegisterUserStoresDetails" classname="com.mycompany.prog5121part1.LoginTest" time="0.004"/>
   <testcase name="testCheckCellPhoneNumberCorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.002"/>
-  <testcase name="testLoginUserFailed" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
+  <testcase name="testLoginUserFailed" classname="com.mycompany.prog5121part1.LoginTest" time="0.0"/>
   <testcase name="testCheckPasswordComplexityCorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testRegisterUserInvalidUsername" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testCheckCellPhoneNumberTooShort" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testCheckUserNameTooLong" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testReturnLoginStatusSuccessful" classname="com.mycompany.prog5121part1.LoginTest" time="0.003"/>
   <testcase name="testCheckUserNameIncorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
-  <testcase name="testLoginUserSuccessful" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
+  <testcase name="testLoginUserSuccessful" classname="com.mycompany.prog5121part1.LoginTest" time="0.0"/>
   <testcase name="testCheckPasswordComplexityIncorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testRegisterUserSuccessful" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
-  <testcase name="testRegisterUserInvalidPassword" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
+  <testcase name="testRegisterUserInvalidPassword" classname="com.mycompany.prog5121part1.LoginTest" time="0.0"/>
   <testcase name="testReturnLoginStatusFailed" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testCheckUserNameCorrect" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
   <testcase name="testCheckPasswordExactlyEightCharacters" classname="com.mycompany.prog5121part1.LoginTest" time="0.001"/>
